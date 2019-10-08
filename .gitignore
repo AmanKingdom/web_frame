@@ -1,0 +1,8 @@
+.gitignore
+.idea
+*.iml
+out
+gen
+venv
+.idea/
+venv/
