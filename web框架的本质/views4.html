@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用jinja2 和 自制模态框</title>
+    <style>
+        .hide{
+            display:none;
+        }
+        .shadow{
+            position:fixed;
+            left:0;
+            top:0;
+            right:0;
+            bottom:0;
+            background-color:black;
+            opacity:0.4;    // 设置透明度
+            z-index:999;    // 层叠高度
+        }
+        .modal{
+            z-index:1000;    // 层叠高度
+            position:fixed;
+            left:25%;
+            top:25%;
+            height:300px;
+            width:400px;
+            background-color:white;
+            margin-left:-100px;
+            margin-top:-100px;
+        }
+    </style>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>password</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for row in users %}
+    <tr>
+        <td>{{ row.0 }}</td>
+        <td>{{ row.1 }}</td>
+        <td>{{ row.2 }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<a onclick="showModal()" href="#">打开对话框</a>
+
+<div class="shadow hide" id="shadow"></div>
+<div class="modal hide" id="modal">
+    <p>
+        <input type="text" />
+    </p>
+    <!--<input type="button" value='xxx' onclick="ajax_send();" />-->
+    <input type="button" onclick="hideModal();">
+</div>
+
+<script>
+    function showModal(){
+        document.getElementById('shadow').classList.remove('hide');
+        document.getElementById('modal').classList.remove('hide');
+    }
+    function hideModal() {
+        document.getElementById('shadow').classList.add('hide');
+        document.getElementById('modal').classList.add('hide');
+    }
+</script>
+</body>
+</html>
